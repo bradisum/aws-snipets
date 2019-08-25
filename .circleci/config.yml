@@ -11,10 +11,11 @@ jobs:
       - aws-s3/sync:
           from: bucket
           to: 's3://aws-snipets/masterone'
+          overwrite: true
           arguments: |
             --acl public-read \
-            --cache-control "max-age=86400"
-          overwrite: true
+            --cache-control "max-age=86400" \
+          
       - aws-s3/copy:
           from: bucket/build_asset.txt
           to: 's3://aws-snipets'
