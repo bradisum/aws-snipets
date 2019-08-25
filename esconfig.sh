@@ -1,4 +1,6 @@
 #!/bin/bash
+
+
 # test
 # download and install elastic search public signing key
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
