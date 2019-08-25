@@ -11,6 +11,7 @@ jobs:
       - aws-s3/sync:
           from: bucket
           to: 's3://aws-snipets/masterone'
+          aws-region: AWS_REGION_DEFAULT
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
@@ -18,4 +19,5 @@ jobs:
       - aws-s3/copy:
           from: bucket/build_asset.txt
           to: 's3://aws-snipets'
+          aws-region: AWS_REGION_DEFAULT
           arguments: '--dryrun'
