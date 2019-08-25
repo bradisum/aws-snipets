@@ -1,0 +1,5 @@
+input {
+  beats {
+    port => 5044
+  }
+} /etc/logstash/conf.d/03-beats-input.conf

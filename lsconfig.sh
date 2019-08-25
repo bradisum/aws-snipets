@@ -11,12 +11,13 @@ gpgcheck=1
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch 
 enabled=1 
 autorefresh=1 
-type=rpm-md" | sudo tee -a /etc/yum.repos.d/elasticsearch.repo > /dev/null
+type=rpm-md" | sudo tee /etc/yum.repos.d/elasticsearch.repo > /dev/null
 
 # update yum
 sudo yum -y update
 
-
+# install java
+sudo yum -y install java-1.8.0-openjdk
 
 # install java
 sudo yum -y install logstash
@@ -26,14 +27,14 @@ echo "input {
     host => \"0.0.0.0\" # default: 0.0.0.0
     port => 31311 # default: 8080
   }
-}" | sudo tee -a /etc/logstash/conf.d/02-http-input.conf
+}" | sudo tee /etc/logstash/conf.d/02-http-input.conf > /dev/null
 
 
 echo "input {
   beats {
     port => 5044
   }
-}" > tee /etc/logstash/conf.d/03-beats-input.conf
+}" | sudo tee /etc/logstash/conf.d/03-beats-input.conf > /dev/null
 
 
 
@@ -73,7 +74,7 @@ echo "filter {
     }
   }
 }
-" | sudo tee /etc/logstash/conf.d/10-syslog.conf
+" | sudo tee /etc/logstash/conf.d/10-syslog.conf > /dev/null
 
 echo "output {
   elasticsearch {
@@ -81,7 +82,7 @@ echo "output {
     manage_template => false
     index => \"%{[@metadata][type]}-%{[@metadata][version]}-%{+YYYY.MM.dd}\"
   }
-}" sudo tee /etc/logstash/conf.d/30-elasticsearch-output.conf
+}" | sudo tee /etc/logstash/conf.d/30-elasticsearch-output.conf > /dev/null
 
 # start
 sudo systemctl start logstash
