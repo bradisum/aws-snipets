@@ -80,7 +80,7 @@ echo "output {
   elasticsearch {
     hosts => [\"localhost:9200\"]
     manage_template => false
-    index => \"%{[@metadata][type]}-%{[@metadata][version]}-%{+YYYY.MM.dd}\"
+    index => \"%{[type]}-%{[version]}-%{+YYYY.MM.dd}\"
   }
 }" | sudo tee /etc/logstash/conf.d/30-elasticsearch-output.conf > /dev/null
 
