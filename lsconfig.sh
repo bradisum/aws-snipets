@@ -85,13 +85,13 @@ echo "output {
 }" | sudo tee /etc/logstash/conf.d/30-elasticsearch-output.conf > /dev/null
 
 # fix logstash/centos7 issue
-sudo /usr/share/logstash/bin/system-install /etc/logstash/startup.options systemd
+sudo -i /usr/share/logstash/bin/system-install /etc/logstash/startup.options systemd
 
 # run logstash test
 sudo -u logstash /usr/share/logstash/bin/logstash --path.settings /etc/logstash -t
 
 # start
-sudo systemctl start logstash
+sudo -i systemctl start logstash
 
 # add to boot
-sudo systemctl enable logstash
+sudo -i systemctl enable logstash
