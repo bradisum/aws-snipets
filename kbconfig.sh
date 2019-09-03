@@ -22,7 +22,7 @@ sudo systemctl start kibana
 sudo systemctl enable kibana
 
 # required for nginx
-sudo amazon-linux-extras -y install epel
+sudo amazon-linux-extras install epel -y
 
 # install nginx for reverse proxy
 sudo yum -y install nginx
