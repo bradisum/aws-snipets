@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ESHOST=${1:-localhost}  
+
 # download and install elastic search public signing key
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
@@ -78,7 +80,7 @@ echo "filter {
 
 echo "output {
   elasticsearch {
-    hosts => [\"localhost:9200\"]
+    hosts => [\"$ESHOST:9200\"]
     manage_template => false
     index => \"%{[type]}-%{[version]}-%{+YYYY.MM.dd}\"
   }
