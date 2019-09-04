@@ -21,9 +21,11 @@ sudo yum -y install kibana
 
 # write kabana config
 echo "
+
+# set the elastic search host
 elasticsearch.hosts: [\"http://$ESHOST:9200\"]
 
-" | sudo tee /etc/nginx/conf.d/gslogs.com.conf
+" | sudo tee /etc/kibana/kibana.yml
 
 # start and enable on boot
 sudo systemctl start kibana
