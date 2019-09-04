@@ -44,7 +44,8 @@ sudo systemctl enable nginx
 # generate basic password
 echo "admin:`openssl passwd -apr1 $X`" | sudo tee /etc/nginx/htpasswd.users
 
-# define nginx server
+# define nginx server, nginx operats asa reverse proxy fronting for kibana 
+# localhost 5601
 echo "server {
     listen 80;
 

@@ -82,7 +82,7 @@ echo "output {
   elasticsearch {
     hosts => [\"$ESHOST:9200\"]
     manage_template => false
-    index => \"%{[type]}-%{[version]}-%{+YYYY.MM.dd}\"
+    index => \"kdr-%{+YYYY.MM.dd}\"
   }
 }" | sudo tee /etc/logstash/conf.d/30-elasticsearch-output.conf > /dev/null
 

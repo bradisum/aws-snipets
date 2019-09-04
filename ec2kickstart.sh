@@ -15,8 +15,8 @@ sudo yum -y install git
 git clone https://github.com/bradisum/aws-snipets.git
 cd aws-snipets
 chmod a+x *.sh
-./lsconfig.sh 10.0.1.131
-./kbconfig.sh 10.0.1.131
+./lsconfig.sh 10.0.1.52
+./kbconfig.sh 10.0.1.52
 END
 
 
