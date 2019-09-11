@@ -24,6 +24,15 @@ sudo yum -y install java-1.8.0-openjdk
 # install elasticserach
 sudo yum -y install elasticsearch
 
+
+# define the slasticsearch repository
+echo "
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+network.host: 0
+" | sudo tee /etc/elasticsearch/elasticsearch.yml > /dev/null
+
+
 # start
 sudo systemctl start elasticsearch
 
