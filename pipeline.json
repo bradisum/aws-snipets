@@ -1,0 +1,68 @@
+{
+    "pipeline": {
+        "name": "gb-pipeline",
+        "roleArn": "arn:aws:iam::999505691857:role/service-role/giftbot-pipeline-role",
+        "artifactStore": {
+            "type": "S3",
+            "location": "codepipeline-us-east-2-347609246756"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "Source",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "CodeCommit",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "BranchName": "master",
+                            "PollForSourceChanges": "false",
+                            "RepositoryName": "giftbot"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [],
+                        "region": "us-east-2",
+                        "namespace": "SourceVariables"
+                    }
+                ]
+            },
+            {
+                "name": "Deploy",
+                "actions": [
+                    {
+                        "name": "Deploy",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "CodeDeploy",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ApplicationName": "gb-cd-app",
+                            "DeploymentGroupName": "gb-dp-dg"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "region": "us-east-2",
+                        "namespace": "DeployVariables"
+                    }
+                ]
+            }
+        ],
+        "version": 1
+    },
+}

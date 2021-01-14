@@ -21,10 +21,10 @@ sudo yum -y install kibana
 
 # write kabana config
 echo "
-
+# allow internal hosts to connect
+server.host: \"0.0.0.0\"
 # set the elastic search host
 elasticsearch.hosts: [\"http://$ESHOST:9200\"]
-
 " | sudo tee /etc/kibana/kibana.yml
 
 # start and enable on boot
